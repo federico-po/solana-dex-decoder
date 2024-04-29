@@ -10,6 +10,7 @@
   "dependencies": {
     "@coral-xyz/anchor": "0.29.0",
     "@exodus/assets-base": "^8.1.21",
+    "@exodus/solana-lib": "^3.2.1",
     "@exodus/web3-solana-utils": "^1.64.0",
     "@solana/web3.js": "^1.91.7",
     "bignumber.js": "^9.1.2"

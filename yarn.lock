@@ -699,7 +699,7 @@
     url-join "4.0.0"
     wretch "^1.5.2"
 
-"@exodus/solana-lib@^3.1.1":
+"@exodus/solana-lib@^3.1.1", "@exodus/solana-lib@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@exodus/solana-lib/-/solana-lib-3.2.1.tgz#757d30544b403c3a06af71fbf445d9be441b25a0"
   integrity sha512-l/KCjRo9+KXwNMDRqNS1h6itXbt+h0c6dCtgKs30wOn1eC/K/lVdZAjjBnYELlVwFlb2aHdwlcvJu5lk9gRwKg==
