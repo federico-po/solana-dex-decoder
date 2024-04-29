@@ -1,0 +1,22 @@
+{
+  "name": "solana-dex-decoder",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -c --watch",
+    "start": "node dist/bundle.js"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "0.29.0",
+    "@exodus/assets-base": "^8.1.21",
+    "@exodus/web3-solana-utils": "^1.64.0",
+    "@solana/web3.js": "^1.91.7",
+    "bignumber.js": "^9.1.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3"
+  }
+}
