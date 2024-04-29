@@ -10,14 +10,19 @@
   "dependencies": {
     "@coral-xyz/anchor": "0.29.0",
     "@exodus/assets-base": "^8.1.21",
+    "@exodus/solana-api": "3.0.0",
     "@exodus/solana-lib": "^3.2.1",
     "@exodus/web3-solana-utils": "^1.64.0",
     "@solana/web3.js": "^1.91.7",
-    "bignumber.js": "^9.1.2"
+    "bignumber.js": "^9.1.2",
+    "cross-fetch": "^4.0.0",
+    "delay": "^6.0.0",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.2.3"
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "rollup-plugin-polyfill-node": "^0.13.0"
   }
 }

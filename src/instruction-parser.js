@@ -15,12 +15,9 @@ class InstructionParser {
   decodeInstructions(transaction) {
     const parsedInstructions = [];
     const accountKeys = transaction.message.staticAccountKeys;
-    console.log("messqge", transaction.message.addressTableLookups);
 
     for (const instruction of transaction.message.compiledInstructions) {
       const programId = accountKeys[instruction.programIdIndex];
-      console.log({ programId: programId.toBase58() });
-      console.log({ instruction });
       const parsedTx = {
         programId,
         keys: accountKeys.map((account, index) => ({
@@ -32,16 +29,6 @@ class InstructionParser {
       };
       parsedInstructions.push(parsedTx);
     }
-
-    console.log({ parsedInstructions });
-
-    // for (const instructions of tx.meta.innerInstructions) {
-    //   for (const instruction of instructions.instructions) {
-    //     if (instruction.programId.equals(this.programId)) {
-    //       parsedInstructions.push(instruction);
-    //     }
-    //   }
-    // }
 
     return parsedInstructions;
   }
