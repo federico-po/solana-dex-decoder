@@ -40,12 +40,7 @@ class InstructionParser {
     for (const instruction of jupiterInstructions) {
       if (!("data" in instruction)) continue; // Guard in case it is a parsed decoded instruction, should be impossible
 
-      console.log({ data: instruction.data });
       const ix = this.coder.instruction.decode(instruction.data.rawData);
-
-      console.log({ ix });
-      console.log({ routePlan: ix.data.routePlan });
-      console.log(ix.data.routePlan.map((swap) => console.log(swap)));
 
       outputAmount = outputAmount.plus(ix.data.quotedOutAmount);
       inAmount = inAmount.plus(ix.data.inAmount);
