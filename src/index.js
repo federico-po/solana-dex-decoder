@@ -4,17 +4,23 @@ const { PublicKey, VersionedTransaction } = require("@solana/web3.js");
 const fetch = require("cross-fetch/polyfill"); // TODO: this adds it to the built code, we need to check this.
 
 const { Logs } = require("./logs");
-const { providerNameByAddress } = require("./constants");
+const {
+  knownInstructions,
+  providerNameByAddress,
+  JUPITER_V6_PROGRAM_ID,
+} = require("./constants");
 
 const InstructionParser = require("./instruction-parser");
-
-const JUPITER_V6_PROGRAM_ID = "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4";
 
 const createWithLog = (logs) => (name, result) => {
   logs.add(name, result);
   return result;
 };
 
+// Ensures a Jupiter transaction is valid given:
+// 1. SOL transfers are to known providers (e.g. liquidity providers)
+// 2. There's only one Jupiter instruction and its valid (according to what the user agreed to swap)
+// 3. There's no instruction from an unknown program
 const decodeTransaction = async (base64TransactionData) => {
   const logs = new Logs();
   const withLog = createWithLog(logs);
@@ -77,6 +83,20 @@ const decodeTransaction = async (base64TransactionData) => {
     ) {
       throw new Error(
         "Transaction includes an instruction from an unknown provider"
+      );
+    }
+
+    // Ensures there's no instruction from an unknown program
+    // This may mean an attacker manipulated the tx.
+    const invalidDecodedInstructions = decodedInstructions.filter(
+      (instruction) =>
+        instruction.type === "unknown" &&
+        !knownInstructions.has(instruction.data.programId.toBase58())
+    );
+
+    if (invalidDecodedInstructions.length > 0) {
+      throw new Error(
+        "Transaction includes an instruction from an unknown program"
       );
     }
   }
