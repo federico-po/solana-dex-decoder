@@ -9,7 +9,7 @@ class Log {
   }
 }
 
-export class Logs {
+class Logs {
   logs = [];
 
   add(title, value) {
@@ -20,3 +20,16 @@ export class Logs {
     return this.logs.map((log) => log.toString()).join("\n");
   }
 }
+
+const createWithLog = () => {
+  const logs = new Logs();
+
+  const withLog = (name, result) => {
+    logs.add(name, result);
+    return result;
+  };
+
+  return { logs, withLog };
+};
+
+module.exports = createWithLog;
