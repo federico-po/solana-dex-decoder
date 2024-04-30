@@ -4,8 +4,8 @@ const { PublicKey, VersionedTransaction } = require("@solana/web3.js");
 
 const createWithLog = require("./logs");
 const {
-  knownInstructions,
-  providerNameByAddress,
+  KNOWN_PROGRAM_IDS,
+  PROVIDER_NAME_BY_ADDRESS,
   JUPITER_V6_PROGRAM_ID,
 } = require("./constants");
 const InstructionParser = require("./instruction-parser");
@@ -73,7 +73,9 @@ const decodeTransaction = async (base64TransactionData) => {
       );
 
       if (
-        !owners.some((ownerAddress) => providerNameByAddress.has(ownerAddress))
+        !owners.some((ownerAddress) =>
+          PROVIDER_NAME_BY_ADDRESS.has(ownerAddress)
+        )
       ) {
         throw new Error(
           "Transaction includes an instruction from an unknown provider"
@@ -85,7 +87,7 @@ const decodeTransaction = async (base64TransactionData) => {
       const invalidDecodedInstructions = decodedInstructions.filter(
         (instruction) =>
           instruction.type === "unknown" &&
-          !knownInstructions.has(instruction.data.programId.toBase58())
+          !KNOWN_PROGRAM_IDS.has(instruction.data.programId.toBase58())
       );
 
       if (invalidDecodedInstructions.length > 0) {

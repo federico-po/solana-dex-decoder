@@ -6,7 +6,7 @@ const {
 } = require("@exodus/solana-lib");
 
 // https://quote-api.jup.ag/v6/program-id-to-label
-const providerNameByAddress = new Map([
+const PROVIDER_NAME_BY_ADDRESS = new Map([
   ["DSwpgjMvXhtGn6BsbqmacdBZyfLj6jSWf3HJpdJtmg6N", "Dexlab"],
   ["BSwp6bEBihVLdqJRKGgzjcGLHkcTuzmSo1TQkHepzH8p", "Bonkswap"],
   ["Eo7WjKq67rjJQSZxS6z3YkapzY3eMj6Xy8X5EQVn5UaB", "Meteora"],
@@ -44,18 +44,19 @@ const providerNameByAddress = new Map([
 ]);
 
 const JUPITER_V6_PROGRAM_ID = "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4";
+const BUDGET_PROGRAM_ID = "ComputeBudget111111111111111111111111111111";
 
-const knownInstructions = new Set([
+const KNOWN_PROGRAM_IDS = new Set([
   SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
   SYSTEM_PROGRAM_ID,
   TOKEN_PROGRAM_ID,
   TOKEN_2022_PROGRAM_ID,
-  "ComputeBudget111111111111111111111111111111", // Budget program
+  BUDGET_PROGRAM_ID,
   JUPITER_V6_PROGRAM_ID,
 ]);
 
 module.exports = {
-  providerNameByAddress,
-  knownInstructions,
+  PROVIDER_NAME_BY_ADDRESS,
+  KNOWN_PROGRAM_IDS,
   JUPITER_V6_PROGRAM_ID,
 };
