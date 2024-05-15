@@ -8,7 +8,7 @@ jobs:
   merge-chain:
     if: github.event.pull_request.merged == true
     timeout-minutes: 10
-    name: Merge the entire chain
+    name: Mirror issue
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,3 +18,4 @@ jobs:
         uses: ExodusMovement/mirror-issue-action@v0.1.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
