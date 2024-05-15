@@ -2,10 +2,11 @@ name: Test My Custom Action
 
 on:
   pull_request:
-    types: [merged]
+    types: [closed]
 
 jobs:
   merge-chain:
+    if: github.event.pull_request.merged == true
     timeout-minutes: 10
     name: Merge the entire chain
     runs-on: ubuntu-latest
@@ -16,4 +17,4 @@ jobs:
       - name: Merge chain
         uses: ExodusMovement/mirror-issue-action@v0.1.0
         with:
-          github-token: ${{ secrets.GH_ROBOT_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
