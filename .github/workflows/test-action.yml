@@ -1,0 +1,19 @@
+name: Test My Custom Action
+
+on:
+  pull_request:
+    types: [merged]
+
+jobs:
+  merge-chain:
+    timeout-minutes: 10
+    name: Merge the entire chain
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Merge chain
+        uses: ExodusMovement/mirror-issue-action@v0.1.0
+        with:
+          github-token: ${{ secrets.GH_ROBOT_PAT }}
